@@ -1,24 +1,25 @@
 package com.example.android.bread;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.android.bread.Models.User;
 
+import Adapters.userAdapter;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -28,12 +29,13 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "MainActivity";
 
-    EditText userNmae,userFlourAmount;
-    TextView display;
-    Button saveData;
+   Context _ctx;
 
     Realm realm;
 
+
+    private RecyclerView rv;
+    userAdapter adapter;
     public float val;
 
     @Override
@@ -43,22 +45,36 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        _ctx = this;
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//
+                Intent intent = new Intent(_ctx,AddUser.class);
+                startActivity(intent);
             }
         });
 
         //-- int controls
-        userNmae = (EditText) findViewById(R.id.userNmae);
-        userFlourAmount = (EditText) findViewById(R.id.userFlourAmount);
-        saveData = (Button) findViewById(R.id.saveData);
-        display = (TextView) findViewById(R.id.display);
 
 
+//        -- int realm
+        realm = Realm.getDefaultInstance();
+
+        RealmResults<User> userList = realm.where(User.class).findAll();
+        rv = findViewById(R.id.rv_user);
+        rv.setHasFixedSize(true);
+
+        rv.setLayoutManager(new GridLayoutManager(_ctx, 1));
+
+        rv.addItemDecoration(new DividerItemDecoration(_ctx,
+                DividerItemDecoration.VERTICAL));
+
+
+        adapter = new userAdapter(userList,this);
+        rv.setAdapter(adapter);
 
 
 
@@ -84,19 +100,14 @@ public class MainActivity extends AppCompatActivity
 //        });
 
         //-- int realm
-        realm = Realm.getDefaultInstance();
+//        realm = Realm.getDefaultInstance();
+//
+//        realm.beginTransaction();
+//        realm.deleteAll();
+//        realm.commitTransaction();
 
-        realm.beginTransaction();
-        realm.deleteAll();
-        realm.commitTransaction();
 
-        saveData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    saveData();
-                    readData();
-            }
-        });
+
 
 
 
@@ -115,48 +126,13 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void saveData(){
 
-        realm.executeTransactionAsync(new Realm.Transaction() {
-            @Override
-            public void execute(Realm bgRealm) {
-                User user = bgRealm.createObject(User.class);
-                user.setName(userNmae.getText().toString().trim());
-                user.setFlourAmount(Integer.parseInt(userFlourAmount.getText().toString().trim()));
-            }
-        }, new Realm.Transaction.OnSuccess() {
-            @Override
-            public void onSuccess() {
-                // Transaction was a success
-                Log.d(TAG, "onSuccess: Data written successfully");
-            }
-        }, new Realm.Transaction.OnError() {
-            @Override
-            public void onError(Throwable error) {
-                // Transaction failed and was automatically canceled.
-                Log.d(TAG, "onSuccess: Data written fail");
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
 
-            }
-        });
 
-    }
-
-    private void readData(){
-
-        RealmResults<User> users = realm.where(User.class).findAll();
-        display.setText("");
-        String data = "";
-
-        for (User user:users){
-            try{
-
-                data = data + "\n" +user.toString();
-
-            }catch (NullPointerException e){
-                e.printStackTrace();
-            }
-        }
-            display.setText(data);
     }
 
     @Override

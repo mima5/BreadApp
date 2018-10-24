@@ -1,10 +1,13 @@
 package com.example.android.bread.Models;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class User extends RealmObject {
 
-    private String id;
+    @PrimaryKey
+    private int id;
+
     private String name;
     private int flourAmount;
     private int balance;
@@ -14,7 +17,7 @@ public class User extends RealmObject {
     public User() {
     }
 
-    public User(String id, String name, int flourAmount, int balance, int debt) {
+    public User(int id, String name, int flourAmount, int balance, int debt) {
         this.id = id;
         this.name = name;
         this.flourAmount = flourAmount;
@@ -23,11 +26,11 @@ public class User extends RealmObject {
     }
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

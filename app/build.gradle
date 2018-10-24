@@ -30,6 +30,9 @@ dependencies {
 
     implementation 'com.ramotion.fluidslider:fluid-slider:0.3.0'
 
+    implementation 'com.android.support:cardview-v7:27.0.0'
+
+
 }
 
 apply plugin: 'realm-android'
