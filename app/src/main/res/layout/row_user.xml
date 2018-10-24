@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="60dp">
 
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -15,7 +17,9 @@
             android:id="@+id/rlout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="7dp"
             android:padding="2dp">
 
             <TextView
@@ -35,7 +39,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@+id/img_delete"
-                android:padding="10dp"
+                android:padding="4dp"
                 android:src="@drawable/ic_edit" />
 
             <ImageView
@@ -44,7 +48,7 @@
                 android:layout_height="55dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:padding="10dp"
+                android:padding="4dp"
                 android:src="@drawable/ic_delete" />
 
 
