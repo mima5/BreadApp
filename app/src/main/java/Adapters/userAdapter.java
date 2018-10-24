@@ -43,6 +43,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
 
 
             holder.tv_userName.setText(item.getName());
+            holder.tv_userFlourAmount.setText(item.getFlourAmount()+"");
 //            Toast.makeText(_ctx, "---- waw ----", Toast.LENGTH_SHORT).show();
 
 
@@ -67,7 +68,6 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
 
-//                Note itemLabel = noteList.get(position);
 
                 realm.beginTransaction();
                 userList.get(position).deleteFromRealm();
@@ -93,6 +93,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
         public class ViewHolder extends RecyclerView.ViewHolder {
 
             private final TextView tv_userName;
+            private final TextView tv_userFlourAmount;
             private final ImageView img_delete;
             private final ImageView img_edit;
 
@@ -103,6 +104,7 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
                 super(itemView);
 
                 tv_userName = (TextView) itemView.findViewById(R.id.tv_userName);
+                tv_userFlourAmount = (TextView) itemView.findViewById(R.id.tv_userFlourAmount);
                 img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
                 img_edit = (ImageView) itemView.findViewById(R.id.img_edit);
                 rlout = (RelativeLayout) itemView.findViewById(R.id.rlout);
