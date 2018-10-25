@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.android.bread.Models.User;
 import com.example.android.bread.R;
+import com.example.android.bread.ShowUseerDetails;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -51,9 +53,9 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
 
-//                    Intent intent = new Intent(_ctx, AddNoteActivity.class);
-//                    intent.putExtra("id", item.getId());
-//                    _ctx.startActivity(intent);
+                    Intent intent = new Intent(_ctx, ShowUseerDetails.class);
+                    intent.putExtra("id", item.getId());
+                    _ctx.startActivity(intent);
 
 
 //                Intent i = new Intent(_ctx, EnterProductActivity.class);
