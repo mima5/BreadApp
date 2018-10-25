@@ -23,7 +23,7 @@ public class ShowUseerDetails extends AppCompatActivity {
     RealmResults<User> results;
     int id;
 
-    TextView showName,showFlour;
+    TextView showName, showFlour,showBalance;
     ImageView img_back;
 
     @Override
@@ -39,15 +39,15 @@ public class ShowUseerDetails extends AppCompatActivity {
         //--- int control
         showName = (TextView) findViewById(R.id.showName);
         showFlour = (TextView) findViewById(R.id.showFlour);
+        showBalance = (TextView) findViewById(R.id.showBalance);
 
         img_back = (ImageView) findViewById(R.id.img_back);
-                img_back.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                });
-
+        img_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         //-- get Extras
@@ -58,13 +58,10 @@ public class ShowUseerDetails extends AppCompatActivity {
             results = realm.where(User.class).equalTo("id", id).findAll();
             for (User user : results) {
                 showName.setText(user.getName());
-                showFlour.setText(user.getFlourAmount()+"");
+                showFlour.setText(user.getFlourAmount() + "");
+                showBalance.setText(user.getBalance() + "");
             }
         }
-
-
-
-
 
 
     }// end of onCreate

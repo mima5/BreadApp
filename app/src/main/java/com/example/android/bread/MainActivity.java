@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.android.bread.Models.User;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import Adapters.userAdapter;
 import io.realm.Realm;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity
    Context _ctx;
 
     Realm realm;
-
+    RealmResults<User> arrayList;
 
     private RecyclerView rv;
     userAdapter adapter;
@@ -76,7 +77,12 @@ public class MainActivity extends AppCompatActivity
         adapter = new userAdapter(userList,this);
         rv.setAdapter(adapter);
 
+//--------------------------------
 
+        MaterialSearchView searchView = (MaterialSearchView) findViewById(R.id.action_search);
+
+
+//-----------------------------
 
 
 
@@ -105,13 +111,6 @@ public class MainActivity extends AppCompatActivity
 //        realm.beginTransaction();
 //        realm.deleteAll();
 //        realm.commitTransaction();
-
-
-
-
-
-
-
 
 
 
@@ -165,7 +164,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_search) {
             return true;
         }
 
@@ -196,4 +195,28 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-}
+
+//    @Override
+//    public boolean onQueryTextSubmit(String query) {
+//        return false;
+//    }
+//    @Override
+//    public boolean onQueryTextChange(String newText) {
+//
+//        newText = newText.toLowerCase();
+//        List<User> users = new ArrayList<>();
+//
+//        for (User offer : arrayList) {
+//            String name = offer.getName().toLowerCase();
+//            if (name.contains(newText))
+//                users.add(offer);
+//
+//        }
+//        adapter.setFilter(users);
+//
+//        return true;
+//    }
+
+
+
+}// end of class

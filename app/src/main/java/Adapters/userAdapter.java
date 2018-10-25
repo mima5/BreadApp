@@ -15,6 +15,9 @@ import com.example.android.bread.Models.User;
 import com.example.android.bread.R;
 import com.example.android.bread.ShowUseerDetails;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.realm.Realm;
 import io.realm.RealmResults;
 
@@ -23,6 +26,8 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
 
     Context _ctx;
     RealmResults<User> userList;
+    List<User> users ;
+
     Realm realm;
 
     public userAdapter(RealmResults<User> userList, Context ctx) {
@@ -124,6 +129,12 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
 
         }
     }
+    public void setFilter(List<User> newList)
+    {
 
+        users = new ArrayList<>();
+        users.addAll(newList);
+        notifyDataSetChanged();
+    }
 
 }
