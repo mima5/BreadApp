@@ -28,7 +28,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="12dp"/>
+                    android:layout_marginRight="12dp" />
 
 
                 <TextView
@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="المستخدم"
+                    android:text="الحساب"
                     android:textSize="22sp" />
 
                 <ImageView
@@ -54,7 +54,6 @@
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_show_useer_details" />
-
 
 
 </android.support.design.widget.CoordinatorLayout>
