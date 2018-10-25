@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.bread.Models.User;
@@ -22,6 +24,7 @@ public class ShowUseerDetails extends AppCompatActivity {
     int id;
 
     TextView showName,showFlour;
+    ImageView img_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,19 @@ public class ShowUseerDetails extends AppCompatActivity {
         _ctx = this;
         realm = Realm.getDefaultInstance();
 
+        //--- int control
         showName = (TextView) findViewById(R.id.showName);
         showFlour = (TextView) findViewById(R.id.showFlour);
+
+        img_back = (ImageView) findViewById(R.id.img_back);
+                img_back.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
+
 
         //-- get Extras
         Intent intent = getIntent();
