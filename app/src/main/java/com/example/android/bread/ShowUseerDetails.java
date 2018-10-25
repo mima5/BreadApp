@@ -23,7 +23,7 @@ public class ShowUseerDetails extends AppCompatActivity {
     RealmResults<User> results;
     int id;
 
-    TextView showName, showFlour,showBalance;
+    TextView showName, showFlour,showBalance,showDept;
     ImageView img_back;
 
     @Override
@@ -40,6 +40,7 @@ public class ShowUseerDetails extends AppCompatActivity {
         showName = (TextView) findViewById(R.id.showName);
         showFlour = (TextView) findViewById(R.id.showFlour);
         showBalance = (TextView) findViewById(R.id.showBalance);
+        showDept = (TextView) findViewById(R.id.showDept);
 
         img_back = (ImageView) findViewById(R.id.img_back);
         img_back.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +61,9 @@ public class ShowUseerDetails extends AppCompatActivity {
                 showName.setText(user.getName());
                 showFlour.setText(user.getFlourAmount() + "");
                 showBalance.setText(user.getBalance() + "");
+
+                int dept = (user.getFlourAmount() - user.getBalance());
+                showDept.setText(dept+"");
             }
         }
 
