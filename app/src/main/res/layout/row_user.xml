@@ -42,8 +42,8 @@
                 android:layout_toRightOf="@id/img_edit"
                 android:layout_marginLeft="4dp"
                 android:layout_centerVertical="true"
-                android:text="25"
-                android:textSize="21sp" />
+                android:text="22"
+                android:textSize="18sp" />
 
 
 
@@ -55,7 +55,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="-15dp"
                 android:layout_toRightOf="@+id/img_delete"
-                android:padding="8dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_edit" />
 
             <ImageView
@@ -64,7 +64,7 @@
                 android:layout_height="55dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:padding="8dp"
+                android:padding="10dp"
                 android:src="@drawable/ic_delete" />
 
 
